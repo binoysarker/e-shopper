@@ -27,3 +27,24 @@ Route::get('/login','PagesController@getLogin');
 Route::get('/product_details','PagesController@getProduct_Details');
 Route::get('/send_mail','PagesController@getSend_Mail');
 Route::get('/shop','PagesController@getShop');
+
+/*
+ * AdminController section
+ *
+ */
+Route::resource('/admin','AdminController');
+/*
+ *CategoryController section
+ */
+Route::resource('/admin/category','CategoryController');
+/*
+ *SubCategoryController section
+ */
+Route::resource('/admin/subCategory','SubCategoryController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+/*
+ *ProductController section
+ */
+Route::resource('/admin/product','ProductController');

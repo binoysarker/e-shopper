@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\SubCategory;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller

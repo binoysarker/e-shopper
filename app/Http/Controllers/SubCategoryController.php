@@ -1,0 +1,106 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Category;
+use App\SubCategory;
+use Illuminate\Http\Request;
+
+class SubCategoryController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $categories = new Category;
+        $subCategories= new SubCategory;
+        $categories = $categories->all();
+        $subCategories = $subCategories->all();
+        return view('subCategory.create',compact('categories','subCategories'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request,[
+            'category_id'   =>  'required|numeric',
+            'SubCategoryName'   =>  'required|max:20'
+        ]);
+        $subCategory = new SubCategory;
+        $subCategory->category_id = $request->category_id;
+        $subCategory->SubCategoryName = $request->SubCategoryName;
+        $subCategory->save();
+        session()->flash('message','Data Inserted Successfuly');
+        return redirect('/admin');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\SubCategory  $subCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function show(SubCategory $subCategory)
+    {
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\SubCategory  $subCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(SubCategory $subCategory)
+    {
+        return view('subCategory.edit',compact('subCategory'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\SubCategory  $subCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, SubCategory $subCategory)
+    {
+        $this->validate($request,[
+            'SubCategoryName'  =>  'required|max:15',
+            'category_id'  =>  'required|numeric'
+        ]);
+        $subCategories = SubCategory::find($subCategory)->first();
+        $subCategories->update(request(['category_id','SubCategoryName']));
+        session()->flash('message','Data Updated Successfuly');
+        return redirect('/admin');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\SubCategory  $subCategory
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(SubCategory $subCategory)
+    {
+        //
+    }
+}

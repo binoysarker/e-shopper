@@ -33,7 +33,7 @@
 <section>
     <div class="container">
         <div class="row">
-            @include('partitlas.left_slider')
+            @include('partitlas.left_siderbar')
 
             <div class="col-sm-9 padding-right">
                 @yield('content')
