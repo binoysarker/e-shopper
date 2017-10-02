@@ -24,7 +24,7 @@ Route::get('/cart','PagesController@getCart');
 Route::get('/checkout','PagesController@getCheckout');
 Route::get('/contact','PagesController@getContact');
 Route::get('/login','PagesController@getLogin');
-Route::get('/product_details','PagesController@getProduct_Details');
+Route::get('/product_details/{product}','PagesController@getProduct_Details');
 Route::get('/send_mail','PagesController@getSend_Mail');
 Route::get('/shop','PagesController@getShop');
 
@@ -48,3 +48,7 @@ Route::get('/home', 'HomeController@index')->name('home');
  *ProductController section
  */
 Route::resource('/admin/product','ProductController');
+/*
+ *BrandController section
+ */
+Route::resource('/admin/brand','BrandController');

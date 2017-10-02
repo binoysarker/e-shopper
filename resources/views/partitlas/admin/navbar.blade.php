@@ -130,8 +130,16 @@
                 </ul>
             </li>
             <li>
-                <a href="javascript:" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-arrows-v"></i> Products <i class="fa fa-fw fa-caret-down"></i></a>
+                <a href="javascript:" data-toggle="collapse" data-target="#demo3"><i class="fa fa-fw fa-arrows-v"></i> Brands <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo3" class="collapse">
+                    <li>
+                        <a href="{{url('/admin/brand/create')}}">Create Brand</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:" data-toggle="collapse" data-target="#demo4"><i class="fa fa-fw fa-arrows-v"></i> Products <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo4" class="collapse">
                     <li>
                         <a href="{{url('/admin/product/create')}}">Create Product</a>
                     </li>

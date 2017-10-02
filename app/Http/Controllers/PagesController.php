@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\SubCategory;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+
     public function getIndex()
     {
+        if (isset(auth()->user()->name)){
+            if (auth()->user()->name == "Admin"){
+                return redirect('/admin');
+            }
+        }
         return view('pages.index');
     }
 
@@ -42,9 +49,9 @@ class PagesController extends Controller
     {
         return view('pages.login');
     }
-    public function getProduct_Details()
+    public function getProduct_Details(Product $product)
     {
-        return view('pages.product-details');
+        return view('pages.product-details',compact('product'));
     }
     public function getSend_Mail()
     {

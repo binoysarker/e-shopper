@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Brand;
 use App\Category;
 use App\Product;
 use App\SubCategory;
@@ -20,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         view()->share('categories',Category::all());
         view()->share('products',Product::all());
+        view()->share('brands',Brand::all());
         view()->share('subCategories',$subCategories = SubCategory::getSubCategories());
 
     }

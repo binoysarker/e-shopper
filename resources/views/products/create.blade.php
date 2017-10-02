@@ -24,6 +24,21 @@
             <div class="col-lg-6 col-lg-offset-3">
                 {{--displaying error message--}}
                 @include('partitlas.errorMessage')
+                @if($categories->isEmpty())
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Warning!: Please Create a Category First</strong>
+                    </div>
+                @endif
+                @if($subCategories->isEmpty())
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Warning!: Please Create a Sub Category First</strong>
+                    </div>
+                @endif
+                @if($brands->isEmpty())
+                    <div class="alert alert-warning" role="alert">
+                        <strong>Warning!: Please Create a Brand First</strong>
+                    </div>
+                @endif
 
                 <form action="{{url('/admin/product')}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
@@ -59,6 +74,34 @@
                     <div class="form-group">
                         <label for="productPrice">product Price</label>
                         <input type="text" name="productPrice" id="productPrice" class="form-control" placeholder="product Price" >
+                    </div>
+                    <div class="form-group">
+                        <label for="Availability">Availability</label>
+                        <select class="form-control" name="Availability" id="Availability">
+                            <option value="0">In Stock</option>
+                            <option value="1">Out of Stock</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Quantity">Quantity</label>
+                        <input type="number" name="Quantity" id="Quantity" class="form-control" placeholder="" aria-describedby="helpId1">
+                        <small id="helpId1" class="text-muted">Quentity should be number</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="Condition">Condition</label>
+                        <select class="form-control" name="Condition" id="Condition">
+                            <option value="New">New</option>
+                            <option value="Old">Old</option>
+                            <option value="UpComing">UpComing</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="BrandName">Brand Name</label>
+                        <select class="form-control" name="BrandName" id="BrandName">
+                            @foreach($brands as $brand)
+                                <option value="{{$brand->BrandName}}">{{$brand->BrandName}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="product_file">Image</label>

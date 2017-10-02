@@ -21,6 +21,10 @@ class CreateProductsTable extends Migration
             $table->string('productBrief');
             $table->text('productDescription');
             $table->string('productPrice');
+            $table->boolean('Availability')->default(0);
+            $table->integer('Quantity');
+            $table->string('Condition');
+            $table->string('BrandName');
             $table->string('product_file');
             $table->timestamps();
         });

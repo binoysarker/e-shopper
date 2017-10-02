@@ -87,6 +87,7 @@
                             <h2>{{$product->productPrice}}</h2>
                             <p>{{$product->productBrief}}</p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                            <a href="{{url('/product_details/'.$product->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product Details</a>
                         </div>
                     </div>
                 </div>

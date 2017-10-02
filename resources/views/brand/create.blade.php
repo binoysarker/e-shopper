@@ -13,7 +13,7 @@
                 </h1>
                 <ol class="breadcrumb">
                     <li class="active">
-                        <i class="fa fa-dashboard"></i> Create Sub Category
+                        <i class="fa fa-dashboard"></i> Create Brand
                     </li>
                 </ol>
             </div>
@@ -22,26 +22,27 @@
 
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
-                {{--display error message--}}
+                {{--displaying error message--}}
                 @include('partitlas.errorMessage')
-                @if($categories->isEmpty())
+                @include('partitlas.errorMessage')
+                @if($subCategories->isEmpty())
                     <div class="alert alert-warning" role="alert">
-                        <strong>Warning!: Please Create a Category First</strong>
+                        <strong>Warning!: Please Create a Sub Category First</strong>
                     </div>
                 @endif
-                    <form action="{{url('/admin/subCategory')}}" method="post">
+                <form action="{{url('/admin/brand')}}" method="post">
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label for="category_id">Category Name</label>
-                        <select class="form-control" name="category_id" id="category_id">
-                            @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->categoryName}}</option>
+                        <label for="sub_category_id">Sub Category</label>
+                        <select class="form-control" name="sub_category_id" id="sub_category_id">
+                            @foreach($subCategories as $subCategory)
+                                <option value="{{$subCategory->id}}">{{$subCategory->SubCategoryName}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="SubCategoryName">Sub Category Name</label>
-                        <input type="text" name="SubCategoryName" id="SubCategoryName" class="form-control" placeholder="Sub Category Name" >
+                        <label for="brName">Brand Name</label>
+                        <input type="text" name="BrandName" id="brName" class="form-control" placeholder="Brand Name" >
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>

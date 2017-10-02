@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Admin;
+use App\Brand;
 use App\Category;
 use App\Product;
 use App\SubCategory;
@@ -20,9 +21,8 @@ class AdminController extends Controller
         $categories = Category::all();
         $subCategories = SubCategory::all();
         $products = Product::all();
-
-
-        return view('admin.index',compact('categories','subCategories','products'));
+        $brands = Brand::all();
+        return view('admin.index',compact('categories','subCategories','products','brands'));
     }
 
     /**

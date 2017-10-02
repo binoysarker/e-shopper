@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Brand;
 use App\Category;
 use App\Product;
 use App\SubCategory;
@@ -28,7 +29,8 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $subCategories = SubCategory::all();
-        return view('products.create',compact('categories','subCategories'));
+        $brands = Brand::all();
+        return view('products.create',compact('categories','subCategories','brands'));
     }
 
     /**
@@ -46,6 +48,9 @@ class ProductController extends Controller
             'productBrief'   =>  'required|max:191',
             'productDescription'   =>  'required',
             'productPrice'   =>  'required|max:10',
+            'Quantity'   =>  'required|numeric',
+            'Condition'   =>  'required|max:10',
+            'BrandName'   =>  'required|max:10',
             'product_file'   =>  'required|max:100'
         ]);
         $products = new Product;
@@ -55,6 +60,9 @@ class ProductController extends Controller
         $products->productBrief = $request->productBrief;
         $products->productDescription = $request->productDescription;
         $products->productPrice = $request->productPrice;
+        $products->Quantity = $request->Quantity;
+        $products->Condition = $request->Condition;
+        $products->BrandName = $request->BrandName;
 //      processing the fie for product
         if ($request->hasFile('product_file')){
             $image = $request->file('product_file');
@@ -105,7 +113,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        $subCategories = SubCategory::all();
+        $brands = Brand::all();
+        return view('products.edit',compact('product','categories','subCategories','brands'));
     }
 
     /**
@@ -117,7 +128,36 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $this->validate($request,[
+            'category_id'   =>  'required|numeric',
+            'sub_category_id'   =>  'required|numeric',
+            'productName'   =>  'required|max:100',
+            'productBrief'   =>  'required|max:191',
+            'productDescription'   =>  'required',
+            'productPrice'   =>  'required|max:10',
+            'Quantity'   =>  'required|numeric',
+            'Condition'   =>  'required|max:10',
+            'BrandName'   =>  'required|max:10',
+            'product_file'   =>  'required|max:100'
+
+        ]);
+        /*$products = new Product;
+        $products->category_id = $request->category_id;
+        $products->sub_category_id = $request->sub_category_id;
+        $products->productName = $request->productName;
+        $products->productBrief = $request->productBrief;
+        $products->productDescription = $request->productDescription;
+        $products->productPrice = $request->productPrice;
+        $products->Quantity = $request->Quantity;
+        $products->Condition = $request->Condition;
+        $products->BrandName = $request->BrandName;
+        $products->product_file = $request->product_file;*/
+        $getId = $product['id'];
+        $products = Product::where('id',$getId);
+        $products->update(\request(['category_id','sub_category_id','productName','productBrief','productDescription','productPrice','Quantity','Condition','BrandName','product_file']));
+
+        session()->flash('message','Data Updated Successfuly');
+        return redirect('/admin');
     }
 
     /**
@@ -128,6 +168,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $getId = $product['id'];
+        $products = Product::where('id',$getId);
+        $products->delete();
+        session()->flash('message','Data Deleted Successfuly');
+        return redirect('/admin');
     }
 }
