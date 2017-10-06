@@ -26,4 +26,12 @@ class Product extends Model
     {
         return static ::where('id',1)->first();
     }
+
+    public static function getProductsByName()
+    {
+        $getProductsByName = request('BrandName');
+        if ($getProductsByName == request('BrandName')){
+            return static::where('BrandName','like',"%$getProductsByName%")->get();
+        }
+    }
 }

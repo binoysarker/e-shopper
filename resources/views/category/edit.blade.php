@@ -30,7 +30,7 @@
                     <input type="hidden" name="user_id" value="{{$category->user_id}}">
                         <div class="form-group">
                             <label for="catName">category Name</label>
-                            <input type="text" name="categoryName" id="catName" class="form-control" value="{{$category->categoryName}}">
+                            <input required type="text" name="categoryName" id="catName" class="form-control" value="{{$category->categoryName}}">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Update</button>

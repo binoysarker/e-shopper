@@ -11,11 +11,7 @@ class PagesController extends Controller
 
     public function getIndex()
     {
-        if (isset(auth()->user()->name)){
-            if (auth()->user()->name == "Admin"){
-                return redirect('/admin');
-            }
-        }
+
         return view('pages.index');
     }
 

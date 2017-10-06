@@ -22,6 +22,7 @@
 
     <!-- Custom Fonts -->
     <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <script src="{{asset('tinymce/tinymce.min.js')}}"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
 
@@ -62,7 +63,6 @@
 <script src="{{asset('js/plugins/morris/raphael.min.js')}}"></script>
 <script src="{{asset('js/plugins/morris/morris.min.js')}}"></script>
 <script src="{{asset('js/plugins/morris/morris-data.js')}}"></script>
-
 </body>
 
 </html>

@@ -29,7 +29,7 @@
                     <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                     <div class="form-group">
                         <label for="catName">Category Name</label>
-                        <input type="text" name="categoryName" id="catName" class="form-control" placeholder="Category Name" >
+                        <input required type="text" name="categoryName" id="catName" class="form-control" placeholder="Category Name" >
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>

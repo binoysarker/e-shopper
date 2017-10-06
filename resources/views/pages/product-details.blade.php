@@ -6,28 +6,29 @@
 	<div class="product-details"><!--product-details-->
 		<div class="col-sm-5">
 			<div class="view-product">
-				<img src="{{asset(''.$product['product_file'])}}" alt="" />
+				<img id="zoom_01" data-zoom-image="{{asset(''.$product['product_file'])}}" src="{{asset(''.$product['product_file'])}}" alt="" />
 				<h3>ZOOM</h3>
 			</div>
+            {{--Related Products--}}
+
 			<div id="similar-product" class="carousel slide" data-ride="carousel">
+                <h3 class="text-warning">RELATED PRODUCTS</h3>
+
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner">
 					<div class="item active">
 						<a href=""><img src="{{asset('images/product-details/similar1.jpg')}}" alt=""></a>
-						<a href=""><img src="{{asset('images/product-details/similar2.jpg')}}" alt=""></a>
-						<a href=""><img src="{{asset('images/product-details/similar3.jpg')}}" alt=""></a>
 					</div>
-					<div class="item">
-						<a href=""><img src="{{asset('images/product-details/similar1.jpg')}}" alt=""></a>
-						<a href=""><img src="{{asset('images/product-details/similar2.jpg')}}" alt=""></a>
-						<a href=""><img src="{{asset('images/product-details/similar3.jpg')}}" alt=""></a>
-					</div>
-					<div class="item">
-						<a href=""><img src="{{asset('images/product-details/similar1.jpg')}}" alt=""></a>
-						<a href=""><img src="{{asset('images/product-details/similar2.jpg')}}" alt=""></a>
-						<a href=""><img src="{{asset('images/product-details/similar3.jpg')}}" alt=""></a>
-					</div>
+                    @php($getSubCategories = \App\SubCategory::where('id',$product['sub_category_id'])->get())
+                    @foreach($getSubCategories as $getSubCategory)
+                        @foreach($getSubCategory->products as $relatedProducts)
+                            <div class="item">
+                                <a href=""><img src="{{asset(''.$relatedProducts->product_file)}}" class="img-responsive" style="width: 84px;height: 80px" alt=""></a>
+                            </div>
+                        @endforeach
+                    @endforeach
+
 
 				</div>
 
@@ -43,22 +44,24 @@
 		</div>
 		<div class="col-sm-7">
 			<div class="product-information"><!--/product-information-->
-				<img src="{{asset('images/product-details/new.jpg')}}" class="newarrival" alt="" />
+				@if($product['Condition'] == "New")
+					<img  src="{{asset('images/product-details/new.jpg')}}" class="newarrival" alt="" />
+				@endif
 				<h2>{{$product['productName']}}</h2>
-				<p>Web ID: 1089772</p>
+				<p>Web ID: 1000{{$product['id']}}</p>
 				<img src="{{asset('images/product-details/rating.png')}}" alt="" />
 				<span>
-									<span>US $59</span>
-									<label>Quantity:</label>
+									<span>US {{$product['productPrice']}}</span>
+									<label>Quantity: {{$product['Quantity']}}</label>
 									<input type="text" value="3" />
 									<button type="button" class="btn btn-fefault cart">
 										<i class="fa fa-shopping-cart"></i>
 										Add to cart
 									</button>
 								</span>
-				<p><b>Availability:</b> In Stock</p>
-				<p><b>Condition:</b> New</p>
-				<p><b>Brand:</b> E-SHOPPER</p>
+				<p><b>Availability:</b> {{$product['Availability']}}</p>
+				<p><b>Condition:</b> {{$product['Condition']}}</p>
+				<p><b>Brand:</b> {{$product['BrandName']}}</p>
 				<a href=""><img src="{{asset('images/product-details/share.png')}}" class="share img-responsive"  alt="" /></a>
 			</div><!--/product-information-->
 		</div>
@@ -345,3 +348,7 @@
 		</div>
 	</div><!--/recommended_items-->
 @endsection
+@push('scripts')
+    <script src="{{asset('js/jquery.elevateZoom-3.0.8.min.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
+@endpush

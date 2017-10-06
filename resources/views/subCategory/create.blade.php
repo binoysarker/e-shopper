@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label for="SubCategoryName">Sub Category Name</label>
-                        <input type="text" name="SubCategoryName" id="SubCategoryName" class="form-control" placeholder="Sub Category Name" >
+                        <input required type="text" name="SubCategoryName" id="SubCategoryName" class="form-control" placeholder="Sub Category Name" >
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>

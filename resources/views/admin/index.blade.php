@@ -128,7 +128,7 @@
                     <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i> Categories</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="list-group">
+                    <div class="list-group myScroll">
                         @foreach($categories as $category)
                             <li href="#" class="list-group-item">
                                 <span>{{$category->categoryName}}</span>
@@ -157,7 +157,7 @@
                     <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i>Sub Categories</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="list-group">
+                    <div class="list-group myScroll">
                         @foreach($subCategories as $subCategory)
                             <li href="#" class="list-group-item">
                                 <span>{{$subCategory->SubCategoryName}}</span>
@@ -186,7 +186,7 @@
                     <h3 class="panel-title"><i class="fa fa-clock-o fa-fw"></i>Brands</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="list-group">
+                    <div class="list-group myScroll">
                         @foreach($brands as $brand)
                             <li href="#" class="list-group-item">
                                 <span>{{$brand->BrandName}}</span>
@@ -216,7 +216,7 @@
                     <h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Product list</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="table table-responsive">
+                    <div class="table table-responsive myScroll">
                         <table class="table table-bordered table-hover table-striped">
                             <thead>
                             <tr>
@@ -224,9 +224,14 @@
                                 <th>Product Name</th>
                                 <th>Category Name</th>
                                 <th>SubCategory Name</th>
+                                <th>Brand Name</th>
                                 <th>Product Brief</th>
                                 <th>Product Description</th>
                                 <th>Product Price</th>
+                                <th>Availability</th>
+                                <th>Quentity</th>
+                                <th>Reorder Level</th>
+                                <th>Featured Item</th>
                                 <th>File Location</th>
                                 <th>Action</th>
                             </tr>
@@ -238,9 +243,14 @@
                                     <td>{{$product->productName}}</td>
                                     <td>{{$product->category->categoryName}}</td>
                                     <td>{{$product->subCategory->SubCategoryName}}</td>
+                                    <td>{{$product->subCategory->BrandName}}</td>
                                     <td>{{substr($product->productBrief,0,50)}}</td>
                                     <td>{{substr($product->productDescription,0,50)}}</td>
                                     <td>{{$product->productPrice}}</td>
+                                    <td>{{$product->Availability == 1? "Available":"Not Available"}}</td>
+                                    <td>{{$product->Quantity}}</td>
+                                    <td>{{$product->ReorderLevel}}</td>
+                                    <td>{{$product->IsFeatured ? "Featured": "Not Featured"}}</td>
                                     <td>{{$product->product_file}}</td>
                                     <td>
                                         <a href="{{url('/admin/product/'.$product->id.'/edit')}}"><i class="fa fa-edit" aria-hidden="true"></i></a>

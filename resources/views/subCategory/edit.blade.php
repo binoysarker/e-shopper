@@ -31,7 +31,7 @@
                     <input type="hidden" name="category_id" value="{{$subCategory->category_id}}">
                         <div class="form-group">
                             <label for="catName">category Name</label>
-                            <input type="text" name="SubCategoryName" id="catName" class="form-control" value="{{$subCategory->SubCategoryName}}">
+                            <input required type="text" name="SubCategoryName" id="catName" class="form-control" value="{{$subCategory->SubCategoryName}}">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Update</button>

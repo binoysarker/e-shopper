@@ -21,8 +21,10 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         view()->share('categories',Category::all());
         view()->share('products',Product::all());
+        view()->share('featureProduct',Product::where('IsFeatured',1)->get());
         view()->share('brands',Brand::all());
         view()->share('subCategories',$subCategories = SubCategory::getSubCategories());
+        view()->share('getProductsByName',$getProductsByName = Product::getProductsByName());
 
     }
 

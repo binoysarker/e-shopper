@@ -39,7 +39,7 @@ class BrandController extends Controller
     {
         $this->validate($request,[
             'sub_category_id'   =>  'required|numeric',
-            'BrandName'   =>  'required|max:20'
+            'BrandName'   =>  'required|max:55'
         ]);
         $brands = new Brand;
         $brands->sub_category_id = $request->sub_category_id;

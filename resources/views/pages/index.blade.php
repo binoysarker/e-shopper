@@ -12,6 +12,7 @@
                             <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
                             <li data-target="#slider-carousel" data-slide-to="1"></li>
                             <li data-target="#slider-carousel" data-slide-to="2"></li>
+                            <li data-target="#slider-carousel" data-slide-to="3"></li>
                         </ol>
 
                         <div class="carousel-inner">
@@ -23,36 +24,24 @@
                                     <button type="button" class="btn btn-default get">Get it now</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{asset('images/home/girl1.jpg')}}" class="girl img-responsive" alt="" />
+                                    <img src="" class="girl img-responsive" style="width: 484px;height: 441px" alt="" />
                                     <img src="{{asset('images/home/pricing.png')}}"  class="pricing" alt="" />
                                 </div>
                             </div>
-                            <div class="item">
+                            @foreach($featureProduct as $picture)
+                            <div class="item ">
                                 <div class="col-sm-6">
                                     <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>100% Responsive Design</h2>
+                                    <h2>Free E-Commerce Template</h2>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
                                     <button type="button" class="btn btn-default get">Get it now</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{asset('images/home/girl2.jpg')}}" class="girl img-responsive" alt="" />
+                                    <img src="{{asset(''.$picture->product_file)}}" style="width: 484px;height: 441px" class="girl img-responsive" alt="" />
                                     <img src="{{asset('images/home/pricing.png')}}"  class="pricing" alt="" />
                                 </div>
                             </div>
-
-                            <div class="item">
-                                <div class="col-sm-6">
-                                    <h1><span>E</span>-SHOPPER</h1>
-                                    <h2>Free Ecommerce Template</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                                    <button type="button" class="btn btn-default get">Get it now</button>
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src="{{asset('images/home/girl3.jpg')}}" class="girl img-responsive" alt="" />
-                                    <img src="{{asset('images/home/pricing.png')}}" class="pricing" alt="" />
-                                </div>
-                            </div>
-
+                            @endforeach
                         </div>
 
                         <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
@@ -69,41 +58,82 @@
     </section><!--/slider-->
 @endsection
 @section('content')
-    <div class="features_items"><!--features_items-->
-        <h2 class="title text-center">Features Items</h2>
-        @foreach($subCategories as $subCategory)
-            @foreach($subCategory->products as $product)
-            <div class="col-sm-4">
-            <div class="product-image-wrapper">
-                <div class="single-products">
-                    <div class="productinfo text-center">
-                        <img src="{{asset(''.$product->product_file)}}" alt="" />
-                        <h2>{{$product->productPrice}}</h2>
-                        <p>{{$product->productBrief}}</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                    </div>
-                    <div class="product-overlay">
-                        <div class="overlay-content">
+
+    @if(isset($subCategories))
+        <div class="features_items"><!--features_items-->
+            <h2 class="title text-center">Items According to the SubCategory</h2>
+            @foreach($subCategories as $subCategory)
+                @foreach($subCategory->products as $product)
+                <div class="col-sm-4">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <img src="{{asset(''.$product->product_file)}}" alt="" />
                             <h2>{{$product->productPrice}}</h2>
                             <p>{{$product->productBrief}}</p>
                             <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-                            <a href="{{url('/product_details/'.$product->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product Details</a>
+                        </div>
+                        <div class="product-overlay">
+                            <div class="overlay-content">
+                                <h2>{{$product->productPrice}}</h2>
+                                <p>{{$product->productBrief}}</p>
+                                <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                <a href="{{url('/product_details/'.$product->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product Details</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="choose">
-                    <ul class="nav nav-pills nav-justified">
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-                        <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-                    </ul>
+                    <div class="choose">
+                        <ul class="nav nav-pills nav-justified">
+                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        @endforeach
-        @endforeach
+            @endforeach
+            @endforeach
 
 
-    </div><!--features_items-->
+        </div><!--features_items-->
+    @endif
+
+    @if(isset($getProductsByName))
+        <div class="features_items"><!--features_items-->
+            <h2 class="title text-center">Items According to the Brand</h2>
+            @foreach($getProductsByName as $product)
+                {{--@foreach($subCategory->products as $product)--}}
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <img src="{{asset(''.$product->product_file)}}" alt="" />
+                                    <h2>{{$product->productPrice}}</h2>
+                                    <p>{{$product->productBrief}}</p>
+                                    <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
+                                <div class="product-overlay">
+                                    <div class="overlay-content">
+                                        <h2>{{$product->productPrice}}</h2>
+                                        <p>{{$product->productBrief}}</p>
+                                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <a href="{{url('/product_details/'.$product->id)}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="choose">
+                                <ul class="nav nav-pills nav-justified">
+                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                    <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {{--@endforeach--}}
+            @endforeach
+
+
+        </div><!--features_items-->
+    @endif
 
     <div class="category-tab"><!--category-tab-->
         <div class="col-sm-12">

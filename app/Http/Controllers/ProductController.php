@@ -51,6 +51,8 @@ class ProductController extends Controller
             'Quantity'   =>  'required|numeric',
             'Condition'   =>  'required|max:10',
             'BrandName'   =>  'required|max:10',
+            'ReorderLevel'   =>  'required|numeric',
+            'IsFeatured'   =>  'required',
             'product_file'   =>  'required|max:100'
         ]);
         $products = new Product;
@@ -61,6 +63,8 @@ class ProductController extends Controller
         $products->productDescription = $request->productDescription;
         $products->productPrice = $request->productPrice;
         $products->Quantity = $request->Quantity;
+        $products->ReorderLevel = $request->ReorderLevel;
+        $products->IsFeatured = $request->IsFeatured;
         $products->Condition = $request->Condition;
         $products->BrandName = $request->BrandName;
 //      processing the fie for product

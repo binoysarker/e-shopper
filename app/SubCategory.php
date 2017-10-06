@@ -23,7 +23,7 @@ class SubCategory extends Model
     {
         $SubCategoryName = request('SubCategoryName');
         if ($SubCategoryName == request('SubCategoryName')){
-            return static::where('SubCategoryName',$SubCategoryName)->get();
+            return static::where('SubCategoryName','like',"%$SubCategoryName%")->get();
         }
     }
 

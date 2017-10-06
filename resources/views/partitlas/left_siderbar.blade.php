@@ -6,17 +6,17 @@
                 @foreach($categories as $category)
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordian" href="#{{$category->categoryName}}">
+                            <a data-toggle="collapse" data-parent="#accordian" href="#{{str_replace(" ","-",$category->categoryName)}}">
                                 <span class="badge pull-right"><i class="fa fa-plus"></i></span>
                                 {{$category->categoryName}}
                             </a>
                     </h4>
                 </div>
-                <div id="{{$category->categoryName}}" class="panel-collapse collapse">
+                <div id="{{str_replace(" ","-",$category->categoryName)}}" class="panel-collapse collapse">
                     <div class="panel-body">
                         <ul>
                             @foreach($category->subCategories as $subCategory)
-                            <li><a href="?SubCategoryName={{$subCategory->SubCategoryName}}">{{$subCategory->SubCategoryName}}
+                            <li><a href="/?SubCategoryName={{$subCategory->SubCategoryName}}">{{$subCategory->SubCategoryName}}
                                 </a></li>
                             @endforeach
                         </ul>
@@ -31,8 +31,10 @@
             <h2>Brands</h2>
             <div class="brands-name">
                 <ul class="nav nav-pills nav-stacked">
+
                     @foreach($brands as $brand)
-                        <li><a href="#"> <span class="pull-right">(4)</span>{{$brand->BrandName}}</a></li>
+                        @php($ProductByBrand = \App\Product::where('BrandName',$brand->BrandName)->pluck('BrandName'))
+                        <li><a href="/?BrandName={{$brand->BrandName}}"> <span class="pull-right">({{count($ProductByBrand)}})</span>{{$brand->BrandName}}</a></li>
                     @endforeach
                 </ul>
             </div>
