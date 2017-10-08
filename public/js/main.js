@@ -1,5 +1,4 @@
 /*price range*/
-
  $('#sl2').slider();
 
 	var RGBChange = function() {
@@ -9,7 +8,8 @@
 /*scroll to top*/
 
 $(document).ready(function(){
-	$(function () {
+
+    $(function () {
 		$.scrollUp({
 	        scrollName: 'scrollUp', // Element ID
 	        scrollDistance: 300, // Distance from top/bottom before showing element (px)
@@ -26,5 +26,68 @@ $(document).ready(function(){
 	        activeOverlay: false, // Set CSS color to display scrollUp active point, e.g '#00FFFF'
 	        zIndex: 2147483647 // Z-Index for the overlay
 		});
-	});
+
+    });
+//    code to load data using jQuery
+    $('#displayCategory').hide();
+    $('#displayProductByBrand').hide();
+    $('#displaySubCategory').hide();
+
+
+    //jQuery code for Category section
+
+	$('#CategorySection li').on('click',function (e) {
+	    $('#displayCategory').show();
+	    e.preventDefault();
+		$(this).each(function () {
+			var getCategoryName = $(this).text();
+			var url = $(this).find('a').attr('href');
+            $.get(url, getCategoryName, function(data){
+                event.stopPropagation();
+                var body = $(data).find('#displayCategory').html();
+                $('#displayCategory').html(body);
+            });
+
+        })
+    });
+
+	//jQuery code for Brand section
+
+	$('#BrandSection li').on('click',function (e) {
+	    $('#displayProductByBrand').show();
+	    e.preventDefault();
+		$(this).each(function () {
+			var getBrandName = $(this).text();
+			var url = $(this).find('a').attr('href');
+            $.get(url, getBrandName, function(data){
+                event.stopPropagation();
+                var body = $(data).find('#displayProductByBrand').html();
+                $('#displayProductByBrand').html(body);
+            });
+
+        })
+    });
+
+	//jQuery code for SubCategory section
+
+	$('#SubCategorySection li').on('click',function (e) {
+	    $('#displaySubCategory').show();
+	    e.preventDefault();
+		$(this).each(function () {
+			var getBrandName = $(this).text();
+			var url = $(this).find('a').attr('href');
+            $.get(url, getBrandName, function(data){
+                event.stopPropagation();
+                var body = $(data).find('#displaySubCategory').html();
+                $('#displaySubCategory').html(body);
+            });
+
+        })
+    });
+
+
+
 });
+
+
+

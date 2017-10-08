@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 {{--displaying error message--}}
-                @include('partitlas.errorMessage')
+                @include('partials.errorMessage')
                 <form action="{{url('/admin/category')}}" method="post">
                     {{csrf_field()}}
                     <input type="hidden" name="user_id" value="{{auth()->user()->id}}">

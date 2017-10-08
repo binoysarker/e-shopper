@@ -27,11 +27,21 @@ class Product extends Model
         return static ::where('id',1)->first();
     }
 
-    public static function getProductsByName()
+    public static function getProductsByBrand()
     {
-        $getProductsByName = request('BrandName');
-        if ($getProductsByName == request('BrandName')){
-            return static::where('BrandName','like',"%$getProductsByName%")->get();
+        $getProductsByBrand = request('BrandName');
+        if ($getProductsByBrand == request('BrandName')){
+            return static::where('BrandName','like',"%$getProductsByBrand%")->get();
         }
+    }
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
+    }
+
+    public static function getRecommendedProduct()
+    {
+        return static::where('clickCount','>',"0")->limit(3)->get();
     }
 }

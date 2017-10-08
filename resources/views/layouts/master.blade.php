@@ -25,7 +25,7 @@
 </head><!--/head-->
 
 <body>
-@include('partitlas.header')
+@include('partials.header')
 @yield('cartSection')
 
 @yield('slider')
@@ -33,7 +33,7 @@
 <section>
     <div class="container">
         <div class="row">
-            @include('partitlas.left_siderbar')
+            @include('partials.left_siderbar')
 
             <div class="col-sm-9 padding-right">
                 @yield('content')
@@ -43,7 +43,7 @@
     </div>
 </section>
 
-@include('partitlas.footer')
+@include('partials.footer')
 
 
 

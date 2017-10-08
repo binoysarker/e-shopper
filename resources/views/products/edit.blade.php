@@ -25,7 +25,7 @@
                 <img src="{{asset(''.$product['product_file'])}}" class="img-responsive" alt="">
 
                 {{--displaying error message--}}
-                @include('partitlas.errorMessage')
+                @include('partials.errorMessage')
                 <form action="{{url('/admin/product/'.$product['id'])}}" method="post" >
                     {{csrf_field()}}
                     {{method_field('PUT')}}

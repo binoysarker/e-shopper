@@ -26,12 +26,12 @@
 </head><!--/head-->
 
 <body>
-@include('partitlas.header')
+@include('partials.header')
 
 @yield('cartSection')
 @yield('contactSection')
 
-@include('partitlas.footer')
+@include('partials.footer')
 
 
 

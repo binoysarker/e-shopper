@@ -48,18 +48,17 @@
 					<img  src="{{asset('images/product-details/new.jpg')}}" class="newarrival" alt="" />
 				@endif
 				<h2>{{$product['productName']}}</h2>
-				<p>Web ID: 1000{{$product['id']}}</p>
+				<p>Web ID: {{$product['id']}}</p>
 				<img src="{{asset('images/product-details/rating.png')}}" alt="" />
-				<span>
-									<span>US {{$product['productPrice']}}</span>
-									<label>Quantity: {{$product['Quantity']}}</label>
-									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
-								</span>
-				<p><b>Availability:</b> {{$product['Availability']}}</p>
+                <h3 class="text-warning">US {{$product['productPrice']}}</h3>
+
+                <form action="{{url('/addToCart/'.$product['id'])}}" method="get">
+                    <div class="form-group-sm">
+                        <input type="number" name="Quantity" class="form-control form-group-sm">
+                        <button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                    </div>
+                </form>
+				<p><b>Availability:</b> {{$product['Availability'] == 1? "Available":"Not Available"}}</p>
 				<p><b>Condition:</b> {{$product['Condition']}}</p>
 				<p><b>Brand:</b> {{$product['BrandName']}}</p>
 				<a href=""><img src="{{asset('images/product-details/share.png')}}" class="share img-responsive"  alt="" /></a>
@@ -67,192 +66,47 @@
 		</div>
 	</div><!--/product-details-->
 
-	<div class="category-tab shop-details-tab"><!--category-tab-->
+	<div class="category-tab" id="CategorySection"><!--category-tab-->
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
-				<li><a href="#details" data-toggle="tab">Details</a></li>
-				<li><a href="#companyprofile" data-toggle="tab">Company Profile</a></li>
-				<li><a href="#tag" data-toggle="tab">Tag</a></li>
-				<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+				@foreach($categories as $category)
+					<li ><a  href="/?CategoryName={{$category->categoryName}}" >{{$category->categoryName}}</a></li>
+				@endforeach
 			</ul>
 		</div>
-		<div class="tab-content">
-			<div class="tab-pane fade" id="details" >
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery1.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery2.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery3.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery4.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 
-			<div class="tab-pane fade" id="companyprofile" >
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery1.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery3.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery2.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery4.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="tab-content" id="displayCategory">
+			@foreach($getProductsByCategory as $category)
+				<div class="tab-pane fade active in" id="{{$category->categoryName}}" >
+					<h2 class="text-info">Products under "{{$category->categoryName}}" Category</h2>
+					@foreach($category->products as $product)
+						<div class="col-sm-3">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="{{asset(''.$product->product_file)}}" alt="" />
+										<h2>{{$product->productPrice}}</h2>
+										<p>{{$product->productName}}</p>
+										<form action="{{url('/addToCart')}}" id="MyForm" method="POST" >
+											{{csrf_field()}}
+											<input type="hidden" name="product_id" value="{{$product->id}}">
+											<input type="hidden" name="Item" value="{{$product->productName}}">
+											<input type="hidden" name="Price" value="{{$product->productPrice}}">
+											<input type="hidden" name="Quantity" value="{{$product->Quantity}}">
+											<input type="hidden" name="Total" value="{{($product->Quantity)*((int)(substr($product->productPrice,1)))}}">
+											<button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
 
-			<div class="tab-pane fade" id="tag" >
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery1.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery2.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery3.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="{{asset('images/home/gallery4.jpg')}}" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+										</form>
+									</div>
 
-			<div class="tab-pane fade active in" id="reviews" >
-				<div class="col-sm-12">
-					<ul>
-						<li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-						<li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-						<li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-					</ul>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-					<p><b>Write Your Review</b></p>
+								</div>
+							</div>
+						</div>
+					@endforeach
 
-					<form action="#">
-										<span>
-											<input type="text" placeholder="Your Name"/>
-											<input type="email" placeholder="Email Address"/>
-										</span>
-						<textarea name="" ></textarea>
-						<b>Rating: </b> <img src="{{asset('images/product-details/rating.png')}}" alt="" />
-						<button type="button" class="btn btn-default pull-right">
-							Submit
-						</button>
-					</form>
 				</div>
-			</div>
+			@endforeach
+
 
 		</div>
 	</div><!--/category-tab-->
@@ -275,69 +129,33 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{asset('images/home/recommend2.jpg')}}" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{asset('images/home/recommend3.jpg')}}" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
-				<div class="item">
-					<div class="col-sm-4">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{asset('images/home/recommend1.jpg')}}" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+				@foreach($getRecommendedProduct as $getProduct)
+					<div class="item">
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img src="{{asset(''.$getProduct->product_file)}}" class="img-responsive" style="width: 268px;height: 160px;" alt="" />
+										<h2>{{$getProduct->productPrice}}</h2>
+										<p>{{$getProduct->productName}}</p>
+										<form action="{{url('/addToCart')}}" id="MyForm" method="POST" >
+											{{csrf_field()}}
+											<input type="hidden" name="product_id" value="{{$product->id}}">
+											<input type="hidden" name="Item" value="{{$product->productName}}">
+											<input type="hidden" name="Price" value="{{$product->productPrice}}">
+											<input type="hidden" name="Quantity" value="{{$product->Quantity}}">
+											<input type="hidden" name="Total" value="{{($product->Quantity)*((int)(substr($product->productPrice,1)))}}">
+											<button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+
+										</form>
+									</div>
+
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-4">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{asset('images/home/recommend2.jpg')}}" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="product-image-wrapper">
-							<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="{{asset('images/home/recommend3.jpg')}}" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				@endforeach
 			</div>
 			<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
 				<i class="fa fa-angle-left"></i>

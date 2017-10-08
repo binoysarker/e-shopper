@@ -40,7 +40,7 @@
 <div id="wrapper">
 
     <!-- Navigation -->
-    @include('partitlas.admin.navbar')
+    @include('partials.admin.navbar')
 
     <div id="page-wrapper">
 

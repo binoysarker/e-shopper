@@ -24,7 +24,9 @@ class AppServiceProvider extends ServiceProvider
         view()->share('featureProduct',Product::where('IsFeatured',1)->get());
         view()->share('brands',Brand::all());
         view()->share('subCategories',$subCategories = SubCategory::getSubCategories());
-        view()->share('getProductsByName',$getProductsByName = Product::getProductsByName());
+        view()->share('getProductsByBrand',$getProductsByBrand = Product::getProductsByBrand());
+        view()->share('getProductsByCategory',$getProductsByCategory = Category::getProductsByCategory());
+        view()->share('getRecommendedProduct',$getRecommendedProduct = Product::getRecommendedProduct());
 
     }
 

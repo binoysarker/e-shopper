@@ -23,8 +23,8 @@
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 {{--displaying error message--}}
-                @include('partitlas.errorMessage')
-                @include('partitlas.errorMessage')
+                @include('partials.errorMessage')
+                @include('partials.errorMessage')
                 @if($subCategories->isEmpty())
                     <div class="alert alert-warning" role="alert">
                         <strong>Warning!: Please Create a Sub Category First</strong>

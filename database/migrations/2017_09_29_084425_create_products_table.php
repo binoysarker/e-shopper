@@ -21,9 +21,10 @@ class CreateProductsTable extends Migration
             $table->string('productName');
             $table->string('productBrief');
             $table->text('productDescription');
-            $table->string('productPrice');
+            $table->float('productPrice');
             $table->tinyInteger('Availability')->default(0);
             $table->integer('Quantity');
+            $table->integer('clickCount')->default(0);
             $table->integer('ReorderLevel');
             $table->tinyInteger('IsFeatured')->default(0);
             $table->string('Condition');

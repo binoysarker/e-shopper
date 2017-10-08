@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Admin;
-use App\Brand;
-use App\Category;
 use App\Product;
-use App\SubCategory;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 
-class AdminController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,11 +21,8 @@ class AdminController extends Controller
 
     public function index()
     {
-        $categories = Category::all();
-        $subCategories = SubCategory::all();
-        $products = Product::all();
-        $brands = Brand::all();
-        return view('admin.index',compact('categories','subCategories','products','brands'));
+        $carts = Cart::content();
+        return view('cart.index',compact('carts'));
     }
 
     /**
@@ -37,7 +32,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        //
     }
 
     /**
@@ -46,18 +41,22 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function addItem(Request $request,$id)
     {
-        //
+        $products = Product::find($id);
+        Cart::add($products->id,$products->productName,$request->Quantity,$products->productPrice)->associate('Product');
+        session()->flash('message','Product Added To Cart Successfully');
+        return redirect('/addToCart');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show(Cart $cart)
     {
         //
     }
@@ -65,10 +64,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(Cart $cart)
     {
         //
     }
@@ -77,10 +76,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Admin  $admin
+     * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, Cart $cart)
     {
         //
     }
@@ -88,11 +87,12 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Admin  $admin
+     * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy($id)
     {
-        //
+        Cart::find($id)->delete();
+        return redirect('/addToCart');
     }
 }

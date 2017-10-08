@@ -62,7 +62,7 @@
                             <li><a href="#"><i class="fa fa-user"></i> Account</a></li>
                             <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="{{url('/checkout')}}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="{{url('/addToCart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <!-- Authentication Links -->
                             @guest
                                 <li><a href="{{ route('login') }}">Login</a></li>
@@ -112,10 +112,8 @@
                             <li><a href="{{url('/')}}" class="active">Home</a></li>
                             <li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                 <ul role="menu" class="sub-menu">
-                                    <li><a href="{{url('/shop')}}">Products</a></li>
-                                    <li><a href="{{url('/product_details')}}">Product Details</a></li>
                                     <li><a href="{{url('/checkout')}}">Checkout</a></li>
-                                    <li><a href="{{url('/cart')}}">Cart</a></li>
+                                    <li><a href="{{url('/addToCart')}}">Cart</a></li>
                                     <li><a href="{{url('/login')}}">Login</a></li>
                                 </ul>
                             </li>

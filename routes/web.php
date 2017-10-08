@@ -52,3 +52,8 @@ Route::resource('/admin/product','ProductController');
  *BrandController section
  */
 Route::resource('/admin/brand','BrandController');
+/*
+ *CartController section
+ */
+Route::get('/addToCart','CartController@index');
+Route::get('/addToCart/{id}','CartController@addItem');

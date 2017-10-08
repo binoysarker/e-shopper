@@ -15,6 +15,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
 
@@ -41,6 +46,11 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+//        code for the click count
+        if ($request->has('clickCount')){
+            Product::where('id',$request->product_id)->increment('clickCount');
+            return redirect('/product_details/'.$request->product_id);
+        }
         $this->validate($request,[
             'category_id'   =>  'required|numeric',
             'sub_category_id'   =>  'required|numeric',

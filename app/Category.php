@@ -22,4 +22,12 @@ class Category extends Model
     {
        return $this->hasMany(SubCategory::class);
     }
+
+    public static function getProductsByCategory()
+    {
+        $getProductsByCategory = request('CategoryName');
+        if ($getProductsByCategory == request('CategoryName')){
+            return static::where('CategoryName','like',"%$getProductsByCategory%")->get();
+        }
+    }
 }

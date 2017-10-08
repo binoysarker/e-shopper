@@ -14,7 +14,7 @@
                 </div>
                 <div id="{{str_replace(" ","-",$category->categoryName)}}" class="panel-collapse collapse">
                     <div class="panel-body">
-                        <ul>
+                        <ul id="SubCategorySection">
                             @foreach($category->subCategories as $subCategory)
                             <li><a href="/?SubCategoryName={{$subCategory->SubCategoryName}}">{{$subCategory->SubCategoryName}}
                                 </a></li>
@@ -30,11 +30,11 @@
         <div class="brands_products"><!--brands_products-->
             <h2>Brands</h2>
             <div class="brands-name">
-                <ul class="nav nav-pills nav-stacked">
+                <ul class="nav nav-pills nav-stacked" id="BrandSection">
 
                     @foreach($brands as $brand)
                         @php($ProductByBrand = \App\Product::where('BrandName',$brand->BrandName)->pluck('BrandName'))
-                        <li><a href="/?BrandName={{$brand->BrandName}}"> <span class="pull-right">({{count($ProductByBrand)}})</span>{{$brand->BrandName}}</a></li>
+                        <li><a href="/?BrandName={{$brand->BrandName}}"> <span class="badge  pull-right">({{count($ProductByBrand)}})</span>{{$brand->BrandName}}</a></li>
                     @endforeach
                 </ul>
             </div>

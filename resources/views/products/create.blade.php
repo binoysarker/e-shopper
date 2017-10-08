@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 {{--displaying error message--}}
-                @include('partitlas.errorMessage')
+                @include('partials.errorMessage')
                 @if($categories->isEmpty())
                     <div class="alert alert-warning" role="alert">
                         <strong>Warning!: Please Create a Category First</strong>
