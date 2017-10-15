@@ -25,9 +25,9 @@ class Category extends Model
 
     public static function getProductsByCategory()
     {
-        $getProductsByCategory = request('CategoryName');
-        if ($getProductsByCategory == request('CategoryName')){
-            return static::where('CategoryName','like',"%$getProductsByCategory%")->get();
+        $getProductsByCategory = request('category_name');
+        if ($getProductsByCategory == request('category_name')){
+            return static::where('category_name','like',"%$getProductsByCategory%")->get();
         }
     }
 }

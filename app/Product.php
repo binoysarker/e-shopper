@@ -29,9 +29,9 @@ class Product extends Model
 
     public static function getProductsByBrand()
     {
-        $getProductsByBrand = request('BrandName');
-        if ($getProductsByBrand == request('BrandName')){
-            return static::where('BrandName','like',"%$getProductsByBrand%")->get();
+        $getProductsByBrand = request('brand_name');
+        if ($getProductsByBrand == request('brand_name')){
+            return static::where('brand_name','like',"%$getProductsByBrand%")->get();
         }
     }
 
@@ -42,6 +42,6 @@ class Product extends Model
 
     public static function getRecommendedProduct()
     {
-        return static::where('clickCount','>',"0")->limit(3)->get();
+        return static::where('click_count','>',"0")->limit(3)->get();
     }
 }

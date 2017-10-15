@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->integer('product_id');
             $table->string('commentBody');
-            $table->tinyInteger('publicationStatus');
+            $table->tinyInteger('publication_status');
             $table->timestamps();
         });
     }

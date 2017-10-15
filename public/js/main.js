@@ -30,8 +30,8 @@ $(document).ready(function(){
     });
 //    code to load data using jQuery
     $('#displayCategory').hide();
-    $('#displayProductByBrand').hide();
-    $('#displaySubCategory').hide();
+    /*$('#displayProductByBrand').hide();
+    $('#displaySubCategory').hide();*/
 
 
     //jQuery code for Category section

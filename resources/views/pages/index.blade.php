@@ -69,15 +69,15 @@
                     <div class="single-products" id="singleProduct">
                         <div class="productinfo text-center">
                             <img src="{{asset(''.$product->product_file)}}" alt="" />
-                            <h2>${{$product->productPrice}}</h2>
-                            <p><strong>{{str_limit($product->productBrief,40,'...')}}</strong></p>
+                            <h2>${{$product->product_price}}</h2>
+                            <p><strong>{{str_limit($product->product_brief,40,'...')}}</strong></p>
 
                             <a  href="{{url('/addToCart')}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                         </div>
                         <div class="product-overlay">
                             <div class="overlay-content">
-                                <h2>{{$product->productPrice}}</h2>
-                                <p>{{$product->productBrief}}</p>
+                                <h2>{{$product->product_price}}</h2>
+                                <p>{{$product->product_brief}}</p>
 
                                 <form action="{{url('admin/product')}}" method="post">
                                     {{csrf_field()}}
@@ -113,14 +113,14 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="{{asset(''.$product->product_file)}}" alt="" />
-                                    <h2>${{$product->productPrice}}</h2>
-                                    <p>{{str_limit($product->productBrief,40,'...')}}</p>
+                                    <h2>${{$product->product_price}}</h2>
+                                    <p>{{str_limit($product->product_brief,40,'...')}}</p>
                                     <a href="{{url('/addToCart')}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
                                 </div>
                                 <div class="product-overlay">
                                     <div class="overlay-content">
-                                        <h2>{{$product->productPrice}}</h2>
-                                        <p>{{$product->productBrief}}</p>
+                                        <h2>{{$product->product_price}}</h2>
+                                        <p>{{$product->product_brief}}</p>
 
                                         <form action="{{url('admin/product')}}" method="post">
                                             {{csrf_field()}}
@@ -149,23 +149,23 @@
         <div class="col-sm-12">
             <ul class="nav nav-tabs">
                 @foreach($categories as $category)
-                    <li ><a  href="/?CategoryName={{$category->categoryName}}" >{{$category->categoryName}}</a></li>
+                    <li ><a  href="/?CategoryName={{$category->category_name}}" >{{$category->category_name}}</a></li>
                 @endforeach
             </ul>
         </div>
 
         <div class="tab-content" id="displayCategory">
             @foreach($getProductsByCategory as $category)
-                <div class="tab-pane fade active in" id="{{$category->categoryName}}" >
-                    <h2 class="text-info">Products under "{{$category->categoryName}}" Category</h2>
+                <div class="tab-pane fade active in" id="{{$category->category_name}}" >
+                    <h2 class="text-info">Products under "{{$category->category_name}}" Category</h2>
                     @foreach($category->products as $product)
                     <div class="col-sm-3">
                         <div class="product-image-wrapper">
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="{{asset(''.$product->product_file)}}" alt="" />
-                                    <h2>${{$product->productPrice}}</h2>
-                                    <p>{{$product->productName}}</p>
+                                    <h2>${{$product->product_price}}</h2>
+                                    <p>{{$product->product_name}}</p>
                                     <form action="{{url('admin/product')}}" method="post">
                                         {{csrf_field()}}
                                         <input type="hidden" name="clickCount" value="0">
@@ -200,12 +200,7 @@
                                     <img src="{{asset('images/home/recommend1.jpg')}}"  alt="" />
                                     <h2>$56</h2>
                                     <p>Easy Polo Black Edition</p>
-                                    <form action="{{url('admin/product')}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="clickCount" value="0">
-                                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                                        <button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product Details</button>
-                                    </form>
+
                                 </div>
 
                             </div>
@@ -220,8 +215,8 @@
                             <div class="single-products">
                                 <div class="productinfo text-center">
                                     <img src="{{asset(''.$getProduct->product_file)}}" class="img-responsive" style="width: 268px;height: 160px;" alt="" />
-                                    <h2>${{$getProduct->productPrice}}</h2>
-                                    <p>{{$getProduct->productName}}</p>
+                                    <h2>${{$getProduct->product_price}}</h2>
+                                    <p>{{$getProduct->product_name}}</p>
                                     <form action="{{url('admin/product')}}" method="post">
                                         {{csrf_field()}}
                                         <input type="hidden" name="clickCount" value="0">

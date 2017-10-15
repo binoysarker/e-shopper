@@ -18,7 +18,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
 
     public function index()
@@ -27,7 +27,7 @@ class AdminController extends Controller
         $subCategories = SubCategory::all();
         $products = Product::all();
         $brands = Brand::all();
-        return view('admin.index',compact('categories','subCategories','products','brands'));
+        return view('admin.home',compact('categories','subCategories','products','brands'));
     }
 
     /**

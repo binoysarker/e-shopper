@@ -46,7 +46,7 @@
                         <label for="category_id">Category Name</label>
                         <select class="form-control" name="category_id" id="category_id">
                         @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->categoryName}}</option>
+                                <option value="{{$category->id}}">{{$category->category_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -54,15 +54,15 @@
                         <label for="sub_category_id">Sub Category</label>
                         <select class="form-control" name="sub_category_id" id="sub_category_id">
                         @foreach($subCategories as $subCategory)
-                                <option value="{{$subCategory->id}}">{{$subCategory->SubCategoryName}}</option>
+                                <option value="{{$subCategory->id}}">{{$subCategory->sub_category_name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="BrandName">Brand Name</label>
-                        <select class="form-control" name="BrandName" id="BrandName">
+                        <label for="brand_name">Brand Name</label>
+                        <select class="form-control" name="brand_name" id="brand_name">
                             @foreach($brands as $brand)
-                                <option value="{{$brand->BrandName}}">{{$brand->BrandName}}</option>
+                                <option value="{{$brand->brand_name}}">{{$brand->brand_name}}</option>
                             @endforeach
                         </select>
                     </div>
