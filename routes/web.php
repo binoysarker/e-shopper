@@ -33,9 +33,9 @@ Route::get('/shop','PagesController@getShop');
  *
  */
 Route::prefix('/admin')->group(function (){
-    Route::GET('/','\App\Http\Controllers\AdminController@index')->name('admin.home');
-    Route::GET('/login','\App\Http\Controllers\Admin\LoginController@showLoginForm')->name('admin.login');
-    Route::POST('/login','\App\Http\Controllers\Admin\LoginController@login');
+Route::GET('/','\App\Http\Controllers\AdminController@index')->name('admin.home');
+Route::GET('/login','\App\Http\Controllers\Admin\LoginController@showLoginForm')->name('admin.login');
+Route::POST('/login','\App\Http\Controllers\Admin\LoginController@login');
 Route::POST('/password/email','\App\Http\Controllers\Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 Route::GET('/password/reset','\App\Http\Controllers\Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 Route::POST('/password/reset','\App\Http\Controllers\Admin\ResetPasswordController@reset');
@@ -66,5 +66,4 @@ Route::resource('/admin/brand','BrandController');
 /*
  *CartController section
  */
-Route::get('/addToCart','CartController@index');
-Route::get('/addToCart/{id}','CartController@addItem');
+Route::resource('/cart','CartController');

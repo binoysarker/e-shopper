@@ -6,17 +6,17 @@
                 @foreach($categories as $category)
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordian" href="#{{str_replace(" ","-",$category->categoryName)}}">
+                            <a data-toggle="collapse" data-parent="#accordian" href="#{{str_replace(" ","-",$category->category_name)}}">
                                 <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                {{$category->categoryName}}
+                                {{$category->category_name}}
                             </a>
                     </h4>
                 </div>
-                <div id="{{str_replace(" ","-",$category->categoryName)}}" class="panel-collapse collapse">
+                <div id="{{str_replace(" ","-",$category->category_name)}}" class="panel-collapse collapse">
                     <div class="panel-body">
                         <ul id="SubCategorySection">
                             @foreach($category->subCategories as $subCategory)
-                            <li><a href="/?SubCategoryName={{$subCategory->SubCategoryName}}">{{$subCategory->SubCategoryName}}
+                            <li><a href="/?SubCategoryName={{$subCategory->sub_category_name}}">{{$subCategory->sub_category_name}}
                                 </a></li>
                             @endforeach
                         </ul>
@@ -33,8 +33,8 @@
                 <ul class="nav nav-pills nav-stacked" id="BrandSection">
 
                     @foreach($brands as $brand)
-                        @php($ProductByBrand = \App\Product::where('BrandName',$brand->BrandName)->pluck('BrandName'))
-                        <li><a href="/?BrandName={{$brand->BrandName}}"> <span class="badge  pull-right">({{count($ProductByBrand)}})</span>{{$brand->BrandName}}</a></li>
+                        @php($ProductByBrand = \App\Product::where('brand_name',$brand->brand_name)->pluck('brand_name'))
+                        <li><a href="/?BrandName={{$brand->brand_name}}"> <span class="badge  pull-right">({{count($ProductByBrand)}})</span>{{$brand->brand_name}}</a></li>
                     @endforeach
                 </ul>
             </div>

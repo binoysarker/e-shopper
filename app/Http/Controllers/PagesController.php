@@ -51,6 +51,7 @@ class PagesController extends Controller
     }
     public function getProduct_Details(Product $product)
     {
+        Product::where('id',$product['id'])->increment('click_count');
         return view('pages.product-details',compact('product'));
     }
     public function getSend_Mail()

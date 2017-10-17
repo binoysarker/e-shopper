@@ -26,14 +26,14 @@
 
                 {{--displaying error message--}}
                 @include('partials.errorMessage')
-                <form action="{{url('/admin/product/'.$product['id'])}}" method="post" >
+                <form id="my-form" action="{{url('/admin/product/'.$product['id'])}}" method="post" enctype="multipart/form-data">
                     {{csrf_field()}}
                     {{method_field('PUT')}}
                     <div class="form-group">
                         <label for="category_id">Category Name</label>
                         <select class="form-control" name="category_id" id="category_id">
                             @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->categoryName}}</option>
+                                <option value="{{$category->id}}">{{$category->category_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -41,72 +41,77 @@
                         <label for="sub_category_id">Sub Category</label>
                         <select class="form-control" name="sub_category_id" id="sub_category_id">
                             @foreach($subCategories as $subCategory)
-                                <option value="{{$subCategory->id}}">{{$subCategory->SubCategoryName}}</option>
+                                <option value="{{$subCategory->id}}">{{$subCategory->sub_category_name}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="BrandName">Brand Name</label>
-                        <select class="form-control" name="BrandName" id="BrandName">
+                        <label for="brand_name">Brand Name</label>
+                        <select class="form-control" name="brand_name" id="brand_name">
                             @foreach($brands as $brand)
-                                <option value="{{$brand->BrandName}}">{{$brand->BrandName}}</option>
+                                <option value="{{$brand->brand_name}}">{{$brand->brand_name}}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="productName">Product Name</label>
-                        <input required type="text" name="productName" id="productName" class="form-control" value="{{$product['productName']}}" >
+                        <label for="product_name">Product Name</label>
+                        <input required type="text" name="product_name" id="product_name" class="form-control" value="{{$product['product_name']}}" >
                     </div>
                     <div class="form-group">
-                        <label for="productBrief">Product Brief</label>
-                        <input required type="text" name="productBrief" id="productBrief" class="form-control" value="{{$product['productBrief']}}" >
+                        <label for="product_brief">Product Brief</label>
+                        <input required type="text" name="product_brief" id="product_brief" class="form-control" value="{{$product['product_brief']}}" >
                     </div>
                     <div class="form-group">
-                        <label for="productDescription">Product Description</label>
-                        <textarea name="productDescription" id="productDescription" class="form-control" cols="30" rows="10">{{$product['productDescription']}}</textarea>
+                        <label for="product_description">Product Description</label>
+                        <textarea name="product_description" id="product_description" class="form-control" cols="30" rows="10">{{$product['product_description']}}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="productPrice">product Price</label>
-                        <input required type="text" name="productPrice" id="productPrice" class="form-control" value="{{$product['productPrice']}}" >
+                        <label for="product_price">product Price</label>
+                        <input required type="text" name="product_price" id="product_price" class="form-control" value="{{$product['product_price']}}" >
                     </div>
 
                     <div class="form-group">
-                        <label for="Availability">Availability</label>
-                        <select class="form-control" name="Availability" id="Availability">
+                        <label for="availability">availability</label>
+                        <select class="form-control" name="availability" id="availability">
                                 <option value="1">In Stock</option>
                                 <option value="0">Out of Stock</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="Quantity">Quantity</label>
-                        <input required type="number" name="Quantity" id="Quantity" class="form-control" value="{{$product['Quantity']}}" aria-describedby="helpId1">
+                        <label for="quantity">quantity</label>
+                        <input required type="number" name="quantity" id="quantity" class="form-control" value="{{$product['quantity']}}" aria-describedby="helpId1">
                         <small id="helpId1" class="text-muted">Quentity should be number</small>
                     </div>
                     <div class="form-group">
-                        <label for="ReorderLevel">Reorder Level</label>
-                        <input required type="number" name="ReorderLevel" id="ReorderLevel" class="form-control" value="{{$product['ReorderLevel']}}" aria-describedby="helpId1">
+                        <label for="reorder_level">Reorder Level</label>
+                        <input required type="number" name="reorder_level" id="reorder_level" class="form-control" value="{{$product['reorder_level']}}" aria-describedby="helpId1">
                         <small id="helpId1" class="text-muted">Reorder Level should be number</small>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="checkbox" class="form-check-input" name="IsFeatured" id="IsFeatured" value="1" checked>
-                            <input type="hidden" class="form-check-input" name="IsFeatured" id="IsFeatured" value="0" >
+                            <input type="checkbox" class="form-check-input" name="is_featured" id="is_featured" value="1" checked>
+                            <input type="hidden" class="form-check-input" name="is_featured" id="is_featured" value="0" >
                             Featured Item
                         </label>
 
                     </div>
                     <div class="form-group">
-                        <label for="Condition">Condition</label>
-                        <select class="form-control" name="Condition" id="Condition">
+                        <label for="condition">condition</label>
+                        <select class="form-control" name="condition" id="condition">
                             <option value="New">New</option>
                             <option value="Old">Old</option>
                             <option value="UpComing">UpComing</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="product_file">Image Path</label>
-                        <input required type="text" class="form-control-file" name="product_file" id="product_file" value="{{$product['product_file']}}"  >
+                        <button class="btn btn-warning" id="change-image">Change Image</button>
+                    </div>
+                    <div class="form-group" id="change-file">
+                        <label for="product_file">Change Image</label>
+                        <input type="hidden" name="product_file" value="{{$product['product_file']}}">
+                        <input type="file" class="form-control-file" name="product_file" id="product_file" aria-describedby="fileHelpId">
+                        <small id="fileHelpId" class="form-text text-muted">Help text</small>
                     </div>
 
 
@@ -119,4 +124,6 @@
         <!-- /.row -->
 
     </div>
+
+
 @endsection

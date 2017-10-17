@@ -126,7 +126,7 @@
                     <div class="list-group myScroll">
                         @foreach($categories as $category)
                             <li href="#" class="list-group-item">
-                                <span>{{$category->categoryName}}</span>
+                                <span>{{$category->category_name}}</span>
                                 <span class="pull-right">
                                         <a href="{{url('/admin/category/'.$category->id.'/edit')}}"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                         <a href="{{ url('/admin/category/'.$category->id) }}"
@@ -155,7 +155,7 @@
                     <div class="list-group myScroll">
                         @foreach($subCategories as $subCategory)
                             <li href="#" class="list-group-item">
-                                <span>{{$subCategory->SubCategoryName}}</span>
+                                <span>{{$subCategory->sub_category_name}}</span>
                                 <span class="pull-right">
                                         <a href="{{url('admin/subCategory/'.$subCategory->id.'/edit')}}"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                         <a href="{{ url('admin/subCategory/'.$subCategory->id) }}"
@@ -184,7 +184,7 @@
                     <div class="list-group myScroll">
                         @foreach($brands as $brand)
                             <li href="#" class="list-group-item">
-                                <span>{{$brand->BrandName}}</span>
+                                <span>{{$brand->brand_name}}</span>
                                 <span class="pull-right">
                                         <a href="{{url('admin/brand/'.$brand->id.'/edit')}}"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                         <a href="{{ url('admin/brand/'.$brand->id) }}"
@@ -235,17 +235,17 @@
                             @foreach($products as $product)
                                 <tr>
                                     <td>{{$product->id}}</td>
-                                    <td>{{$product->productName}}</td>
-                                    <td>{{$product->category->categoryName}}</td>
-                                    <td>{{$product->subCategory->SubCategoryName}}</td>
-                                    <td>{{$product->subCategory->BrandName}}</td>
-                                    <td>{{substr($product->productBrief,0,50)}}</td>
-                                    <td>{{substr($product->productDescription,0,50)}}</td>
+                                    <td>{{$product->product_name}}</td>
+                                    <td>{{$product->category->category_name}}</td>
+                                    <td>{{$product->subCategory->sub_category_name}}</td>
+                                    <td>{{$product->subCategory->brand_name}}</td>
+                                    <td>{{substr($product->product_brief,0,50)}}</td>
+                                    <td>{{substr($product->product_description,0,50)}}</td>
                                     <td>{{$product->productPrice}}</td>
-                                    <td>{{$product->Availability == 1? "Available":"Not Available"}}</td>
-                                    <td>{{$product->Quantity}}</td>
-                                    <td>{{$product->ReorderLevel}}</td>
-                                    <td>{{$product->IsFeatured ? "Featured": "Not Featured"}}</td>
+                                    <td>{{$product->availability == 1? "Available":"Not Available"}}</td>
+                                    <td>{{$product->quantity}}</td>
+                                    <td>{{$product->reorder_level}}</td>
+                                    <td>{{$product->is_featured ? "Featured": "Not Featured"}}</td>
                                     <td>{{$product->product_file}}</td>
                                     <td>
                                         <a href="{{url('/admin/product/'.$product->id.'/edit')}}"><i class="fa fa-edit" aria-hidden="true"></i></a>
@@ -262,45 +262,15 @@
                             </tbody>
                         </table>
                     </div>
-                    {{--<div class="text-right">
-                        <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>--}}
+
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="morris-area-chart"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- /.row -->
 
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Donut Chart</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="morris-donut-chart"></div>
-                        <div class="text-right">
-                            <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-
-
-        </div>
         <!-- /.row -->
 
     </div>

@@ -44,11 +44,11 @@ class BrandController extends Controller
     {
         $this->validate($request,[
             'sub_category_id'   =>  'required|numeric',
-            'BrandName'   =>  'required|max:55'
+            'brand_name'   =>  'required|max:55'
         ]);
         $brands = new Brand;
         $brands->sub_category_id = $request->sub_category_id;
-        $brands->BrandName = $request->BrandName;
+        $brands->brand_name = $request->brand_name;
         $brands->save();
         session()->flash('message','Data Inserted Successfuly');
         return redirect('/admin');
@@ -86,11 +86,11 @@ class BrandController extends Controller
     public function update(Request $request, Brand $brand)
     {
         $this->validate($request,[
-            'BrandName'  =>  'required|max:15',
+            'brand_name'  =>  'required|max:15',
             'sub_category_id'  =>  'required|numeric'
         ]);
         $brands = SubCategory::find($brand)->first();
-        $brands->update(request(['sub_category_id','BrandName']));
+        $brands->update(request(['sub_category_id','brand_name']));
         session()->flash('message','Data Updated Successfuly');
         return redirect('/admin');
     }

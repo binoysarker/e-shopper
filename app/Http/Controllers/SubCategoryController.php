@@ -48,11 +48,11 @@ class SubCategoryController extends Controller
     {
         $this->validate($request,[
             'category_id'   =>  'required|numeric',
-            'SubCategoryName'   =>  'required|max:20'
+            'sub_category_name'   =>  'required|max:20'
         ]);
         $subCategory = new SubCategory;
         $subCategory->category_id = $request->category_id;
-        $subCategory->SubCategoryName = $request->SubCategoryName;
+        $subCategory->sub_category_name = $request->sub_category_name;
         $subCategory->save();
         session()->flash('message','Data Inserted Successfuly');
         return redirect('/admin');
@@ -90,11 +90,11 @@ class SubCategoryController extends Controller
     public function update(Request $request, SubCategory $subCategory)
     {
         $this->validate($request,[
-            'SubCategoryName'  =>  'required|max:15',
+            'sub_category_name'  =>  'required|max:15',
             'category_id'  =>  'required|numeric'
         ]);
         $subCategories = SubCategory::find($subCategory)->first();
-        $subCategories->update(request(['category_id','SubCategoryName']));
+        $subCategories->update(request(['category_id','sub_category_name']));
         session()->flash('message','Data Updated Successfuly');
         return redirect('/admin');
     }

@@ -47,36 +47,36 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 //        code for the click count
-        if ($request->has('clickCount')){
-            Product::where('id',$request->product_id)->increment('clickCount');
+        if ($request->has('click_count')){
+            Product::where('id',$request->product_id)->increment('click_count');
             return redirect('/product_details/'.$request->product_id);
         }
         $this->validate($request,[
             'category_id'   =>  'required|numeric',
             'sub_category_id'   =>  'required|numeric',
-            'productName'   =>  'required|max:100',
-            'productBrief'   =>  'required|max:191',
-            'productDescription'   =>  'required',
-            'productPrice'   =>  'required|max:10',
-            'Quantity'   =>  'required|numeric',
-            'Condition'   =>  'required|max:10',
-            'BrandName'   =>  'required|max:10',
-            'ReorderLevel'   =>  'required|numeric',
-            'IsFeatured'   =>  'required',
+            'product_name'   =>  'required|max:100',
+            'product_brief'   =>  'required|max:191',
+            'product_description'   =>  'required',
+            'product_price'   =>  'required|max:10',
+            'quantity'   =>  'required|numeric',
+            'condition'   =>  'required|max:10',
+            'brand_name'   =>  'required|max:10',
+            'reorder_level'   =>  'required|numeric',
+            'is_featured'   =>  'required',
             'product_file'   =>  'required|max:100'
         ]);
         $products = new Product;
         $products->category_id = $request->category_id;
         $products->sub_category_id = $request->sub_category_id;
-        $products->productName = $request->productName;
-        $products->productBrief = $request->productBrief;
-        $products->productDescription = $request->productDescription;
-        $products->productPrice = $request->productPrice;
-        $products->Quantity = $request->Quantity;
-        $products->ReorderLevel = $request->ReorderLevel;
-        $products->IsFeatured = $request->IsFeatured;
-        $products->Condition = $request->Condition;
-        $products->BrandName = $request->BrandName;
+        $products->product_name = $request->product_name;
+        $products->product_brief = $request->product_brief;
+        $products->product_description = $request->product_description;
+        $products->product_price = $request->product_price;
+        $products->quantity = $request->quantity;
+        $products->reorder_level = $request->reorder_level;
+        $products->is_featured = $request->is_featured;
+        $products->condition = $request->condition;
+        $products->brand_name = $request->brand_name;
 //      processing the fie for product
         if ($request->hasFile('product_file')){
             $image = $request->file('product_file');
@@ -142,29 +142,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $this->validate($request,[
-            'category_id'   =>  'required|numeric',
-            'sub_category_id'   =>  'required|numeric',
-            'productName'   =>  'required|max:100',
-            'productBrief'   =>  'required|max:191',
-            'productDescription'   =>  'required',
-            'productPrice'   =>  'required|max:10',
-            'Quantity'   =>  'required|numeric',
-            'Condition'   =>  'required|max:10',
-            'BrandName'   =>  'required|max:10',
-            'product_file'   =>  'required|max:100'
-
-        ]);
+//        return $request->all();
+//        return $request->product_file;
+//        return $request->file('product-file');
         $getId = $product['id'];
         $products = Product::find($getId);
+        if ($request->hasFile('product_file')){
+            $this->validate($request,[
+                'category_id'   =>  'required|numeric',
+                'sub_category_id'   =>  'required|numeric',
+                'product_name'   =>  'required|max:100',
+                'product_brief'   =>  'required|max:191',
+                'product_description'   =>  'required',
+                'product_price'   =>  'required|max:10',
+                'reorder_level'   =>  'required|numeric',
+                'is_featured'   =>  'required',
+                'quantity'   =>  'required|numeric',
+                'condition'   =>  'required|max:10',
+                'brand_name'   =>  'required|max:10',
+                'product_file'   =>  'required|max:100'
 
-        if ($product['product_file'] == $request->product_file){
-            $products->update(\request(['category_id','sub_category_id','productName','productBrief','productDescription','productPrice','Quantity','Condition','BrandName','product_file']));
-            session()->flash('message','Data Updated Successfuly');
-            return redirect('/admin');
-        }
-        if($product['product_file'] != $request->product_file){
-            unlink("".$request->product_file);
+            ]);
+            return $products;
+
+            unlink("".$products->product_file);
             $image = $request->file('product_file');
             if ($image) {
                 $imageName = str_random(20);
@@ -175,13 +176,33 @@ class ProductController extends Controller
                 $success = $image->move($upload_path, $full_image_name);
                 if ($success) {
                     $request->product_file = $image_url;
-                    $products->update(\request(['category_id','sub_category_id','productName','productBrief','productDescription','productPrice','Quantity','Condition','BrandName','product_file']));
+                    $products->update([
+                        'category_id'       =>  $request->category_id,
+                        'sub_category_id'   =>  $request->sub_category_id,
+                        'product_name'      =>  $request->product_name,
+                        'product_brief'     =>  $request->product_brief,
+                        'product_description'=> $request->product_description,
+                        'product_price'     =>  $request->product_price,
+                        'is_featured'       =>  $request->is_featured,
+                        'quantity'          =>  $request->quantity,
+                        'condition'         =>  $request->condition,
+                        'reorder_level'     =>  $request->reorder_level,
+                        'brand_name'        =>  $request->brand_name,
+                        'product_file'      =>  $image_url
+                    ]);
                     session()->flash('message', 'Data Inserted Successfully');
                     return redirect('/admin');
                 } else {
                     echo 'No file uploaded';
                 }
             }
+
+        }
+        if(preg_match('(upload)',$request->product_file)){
+
+            $products->update(\request(['category_id','sub_category_id','product_name','product_brief','product_description','product_price','quantity','reorder_level','is_featured','condition','brand_name','product_file']));
+            session()->flash('message','Data Updated Successfully');
+            return redirect('/admin');
         }
     }
 
@@ -195,6 +216,7 @@ class ProductController extends Controller
     {
         $getId = $product['id'];
         $products = Product::where('id',$getId);
+        unlink(''.$product['product_file']);
         $products->delete();
         session()->flash('message','Data Deleted Successfuly');
         return redirect('/admin');

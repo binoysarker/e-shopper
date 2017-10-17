@@ -16,7 +16,7 @@ class CartController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+//        $this->middleware('auth');
     }
 
     public function index()
@@ -41,12 +41,15 @@ class CartController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function addItem(Request $request,$id)
+    public function store(Request $request)
     {
-        $products = Product::find($id);
-        Cart::add($products->id,$products->productName,$request->Quantity,$products->productPrice)->associate('Product');
-        session()->flash('message','Product Added To Cart Successfully');
-        return redirect('/addToCart');
+        $carts = Cart::add([
+            'id' => $request->id,
+            'name' => $request->name,
+            'qty' => $request->qty,
+            'price' => $request->price,
+            'options' => ['image' => $request->image]]);
+        return view('cart.index',compact('carts'));
 
     }
 

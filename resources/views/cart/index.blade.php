@@ -27,40 +27,37 @@
                     </tr>
                     </thead>
                     <tbody id="loop">
-                    @foreach($carts as $cart)
+                    {{--@foreach($carts as $cart)--}}
                         <tr >
-                            @php($products = \App\Product::where('id',$cart->id)->get())
-                            @foreach($products as $product)
                             <td class="cart_product">
-                                <a href=""><img src="{{asset(''.$product->product_file)}}" class="img-responsive" style="width: 200px;height: 130px" alt=""></a>
+                                <a href=""><img src="{{asset(''.$carts->options['image'])}}" class="img-responsive" style="width: 200px;height: 130px" alt=""></a>
                             </td>
-                            @endforeach
                             <td class="cart_description">
-                                <h4><a href="">{{$cart->name}}</a></h4>
-                                <p>Web ID: {{$cart->id}}</p>
+                                <h4><a href="">{{$carts->name}}</a></h4>
+                                <p>Web ID: {{$carts->rowId}}</p>
                             </td>
                             <td class="cart_price">
-                                <p>{{$cart->price}}</p>
+                                <p>${{$carts->price}}</p>
                             </td>
                             <td class="cart_quantity" >
                                 <div class="form-group">
-                                    <input type="number" name="Quantity"  id="Quantity" class="form-control small" value="{{$cart->qty}}" aria-describedby="helpId">
+                                    <input type="number" name="Quantity"  id="Quantity" class="form-control small" value="{{$carts->qty}}" aria-describedby="helpId">
                                 </div>
                             </td>
                             <td class="cart_total">
-                                <p class="cart_total_price">US: ${{$cart->subtotal}}</p>
+                                <p class="cart_total_price">US: ${{$carts->subtotal}}</p>
                             </td>
                             <td class="cart_delete">
-                                <a href="{{url('/addToCart/'.$cart->id)}}" onclick="event.preventDefault();document.getElementById('deleteCart').submit()">
+                                <a href="{{url('/addToCart/'.$carts->id)}}" onclick="event.preventDefault();document.getElementById('deleteCart').submit()">
                                     <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
-                                <form id="deleteCart" action="{{url('/addToCart/'.$cart->id)}}" method="POST">
+                                <form id="deleteCart" action="{{url('/addToCart/'.$carts->id)}}" method="POST">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
                                 </form>
                             </td>
                         </tr>
-                    @endforeach
+                    {{--@endforeach--}}
                     </tbody>
                 </table>
             </div>

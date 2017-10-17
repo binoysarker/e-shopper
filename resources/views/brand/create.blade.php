@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label for="brName">Brand Name</label>
-                        <input required type="text" name="BrandName" id="brName" class="form-control" placeholder="Brand Name" >
+                        <input required type="text" name="brand_name" id="brName" class="form-control" placeholder="Brand Name" >
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>

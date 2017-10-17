@@ -1,4 +1,5 @@
 /*price range*/
+
  $('#sl2').slider();
 
 	var RGBChange = function() {
@@ -28,6 +29,7 @@ $(document).ready(function(){
 		});
 
     });
+
 //    code to load data using jQuery
     $('#displayCategory').hide();
     /*$('#displayProductByBrand').hide();
@@ -84,6 +86,8 @@ $(document).ready(function(){
 
         })
     });
+
+
 
 
 

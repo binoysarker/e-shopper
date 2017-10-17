@@ -47,20 +47,23 @@
 				@if($product['Condition'] == "New")
 					<img  src="{{asset('images/product-details/new.jpg')}}" class="newarrival" alt="" />
 				@endif
-				<h2>{{$product['productName']}}</h2>
+				<h2>{{$product['product_name']}}</h2>
 				<p>Web ID: {{$product['id']}}</p>
 				<img src="{{asset('images/product-details/rating.png')}}" alt="" />
-                <h3 class="text-warning">US {{$product['productPrice']}}</h3>
+                <h3 class="text-warning">US {{$product['product_price']}}</h3>
 
-                <form action="{{url('/addToCart/'.$product['id'])}}" method="get">
-                    <div class="form-group-sm">
-                        <input type="number" name="Quantity" class="form-control form-group-sm">
-                        <button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                    </div>
-                </form>
-				<p><b>Availability:</b> {{$product['Availability'] == 1? "Available":"Not Available"}}</p>
-				<p><b>Condition:</b> {{$product['Condition']}}</p>
-				<p><b>Brand:</b> {{$product['BrandName']}}</p>
+				<form action="{{url('/cart')}}" id="MyForm" method="POST" >
+					{{csrf_field()}}
+					<input type="hidden" name="id" value="{{$product->id}}">
+					<input type="hidden" name="name" value="{{$product->product_name}}">
+					<input type="hidden" name="price" value="{{$product->product_price}}">
+					<input type="number" name="qty" value="1">
+					<input type="hidden" name="image" value="{{$product->product_file}}">
+					<button type="submit" name="submit" class="btn btn-warning"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+				</form>
+				<p><b>Availability:</b> {{$product['availability'] == 1? "Available":"Not Available"}}</p>
+				<p><b>Condition:</b> {{$product['condition']}}</p>
+				<p><b>Brand:</b> {{$product['brand_name']}}</p>
 				<a href=""><img src="{{asset('images/product-details/share.png')}}" class="share img-responsive"  alt="" /></a>
 			</div><!--/product-information-->
 		</div>
@@ -70,33 +73,25 @@
 		<div class="col-sm-12">
 			<ul class="nav nav-tabs">
 				@foreach($categories as $category)
-					<li ><a  href="/?CategoryName={{$category->categoryName}}" >{{$category->categoryName}}</a></li>
+					<li ><a  href="/?CategoryName={{$category->category_name}}" >{{$category->category_name}}</a></li>
 				@endforeach
 			</ul>
 		</div>
 
 		<div class="tab-content" id="displayCategory">
 			@foreach($getProductsByCategory as $category)
-				<div class="tab-pane fade active in" id="{{$category->categoryName}}" >
-					<h2 class="text-info">Products under "{{$category->categoryName}}" Category</h2>
+				<div class="tab-pane fade active in" id="{{$category->category_name}}" >
+					<h2 class="text-info">Products under "{{$category->category_name}}" Category</h2>
 					@foreach($category->products as $product)
 						<div class="col-sm-3">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="{{asset(''.$product->product_file)}}" alt="" />
-										<h2>{{$product->productPrice}}</h2>
-										<p>{{$product->productName}}</p>
-										<form action="{{url('/addToCart')}}" id="MyForm" method="POST" >
-											{{csrf_field()}}
-											<input type="hidden" name="product_id" value="{{$product->id}}">
-											<input type="hidden" name="Item" value="{{$product->productName}}">
-											<input type="hidden" name="Price" value="{{$product->productPrice}}">
-											<input type="hidden" name="Quantity" value="{{$product->Quantity}}">
-											<input type="hidden" name="Total" value="{{($product->Quantity)*((int)(substr($product->productPrice,1)))}}">
-											<button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-
-										</form>
+										<h2>{{$product->product_price}}</h2>
+										<p>{{$product->product_name}}</p>
+										<a href="{{url('/product_details/'.$product->id)}}" type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product
+											Details</a>
 									</div>
 
 								</div>
@@ -124,7 +119,7 @@
 									<img src="{{asset('images/home/recommend1.jpg')}}" alt="" />
 									<h2>$56</h2>
 									<p>Easy Polo Black Edition</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+									<button type="button" class="btn btn-default "><i class="fa fa-shopping-cart"></i>Add to cart</button>
 								</div>
 							</div>
 						</div>
@@ -137,18 +132,10 @@
 								<div class="single-products">
 									<div class="productinfo text-center">
 										<img src="{{asset(''.$getProduct->product_file)}}" class="img-responsive" style="width: 268px;height: 160px;" alt="" />
-										<h2>{{$getProduct->productPrice}}</h2>
-										<p>{{$getProduct->productName}}</p>
-										<form action="{{url('/addToCart')}}" id="MyForm" method="POST" >
-											{{csrf_field()}}
-											<input type="hidden" name="product_id" value="{{$product->id}}">
-											<input type="hidden" name="Item" value="{{$product->productName}}">
-											<input type="hidden" name="Price" value="{{$product->productPrice}}">
-											<input type="hidden" name="Quantity" value="{{$product->Quantity}}">
-											<input type="hidden" name="Total" value="{{($product->Quantity)*((int)(substr($product->productPrice,1)))}}">
-											<button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-
-										</form>
+										<h2>{{$getProduct->product_price}}</h2>
+										<p>{{$getProduct->product_name}}</p>
+										<a href="{{url('/product_details/'.$product->id)}}" type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product
+											Details</a>
 									</div>
 
 								</div>

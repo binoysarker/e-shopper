@@ -40,8 +40,8 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="SubCategoryName">Sub Category Name</label>
-                        <input required type="text" name="SubCategoryName" id="SubCategoryName" class="form-control" placeholder="Sub Category Name" >
+                        <label for="sub_category_name">Sub Category Name</label>
+                        <input required type="text" name="sub_category_name" id="sub_category_name" class="form-control" placeholder="Sub Category Name" >
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Submit</button>

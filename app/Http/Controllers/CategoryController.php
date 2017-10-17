@@ -44,11 +44,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'categoryName'  =>  'required|max:15'
+            'category_name'  =>  'required|max:15'
         ]);
         $categories = new Category;
         $categories->user_id = $request->user_id;
-        $categories->categoryName = $request->categoryName;
+        $categories->category_name = $request->category_name;
         $categories->save();
         session()->flash('message','Data Inserted Successfuly');
         return redirect('/admin');
@@ -87,10 +87,10 @@ class CategoryController extends Controller
     {
 
         $this->validate($request,[
-            'categoryName'  =>  'required|max:15'
+            'category_name'  =>  'required|max:15'
         ]);
         $categories = Category::find($category)->first();
-        $categories->update(request(['user_id','categoryName']));
+        $categories->update(request(['user_id','category_name']));
         session()->flash('message','Data Updated Successfuly');
         return redirect('/admin');
     }

@@ -68,49 +68,49 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="productName">Product Name</label>
-                        <input required type="text" name="productName" id="productName" class="form-control" placeholder="Product Name" >
+                        <label for="product_name">Product Name</label>
+                        <input required type="text" name="product_name" id="product_name" class="form-control" placeholder="Product Name" >
                     </div>
                     <div class="form-group">
-                        <label for="productBrief">Product Brief</label>
-                        <input required type="text" name="productBrief" id="productBrief" class="form-control" placeholder="Product Brief" >
+                        <label for="product_brief">Product Brief</label>
+                        <input required type="text" name="product_brief" id="product_brief" class="form-control" placeholder="Product Brief" >
                     </div>
                     <div class="form-group">
-                        <label for="productDescription">Product Description</label>
-                        <textarea name="productDescription" id="productDescription" class="form-control" cols="30" rows="10"></textarea>
+                        <label for="product_description">Product Description</label>
+                        <textarea name="product_description" id="product_description" class="form-control" cols="30" rows="10"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="productPrice">product Price</label>
-                        <input required type="text" name="productPrice" id="productPrice" class="form-control" placeholder="product Price" >
+                        <label for="product_price">product Price</label>
+                        <input required type="text" name="product_price" id="product_price" class="form-control" placeholder="product Price" >
                     </div>
                     <div class="form-group">
-                        <label for="Availability">Availability</label>
-                        <select class="form-control" name="Availability" id="Availability">
+                        <label for="availability">availability</label>
+                        <select class="form-control" name="availability" id="availability">
                             <option value="1">In Stock</option>
                             <option value="0">Out of Stock</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="Quantity">Quantity</label>
-                        <input required type="number" name="Quantity" id="Quantity" class="form-control" placeholder="" aria-describedby="helpId1">
+                        <label for="quantity">quantity</label>
+                        <input required type="number" name="quantity" id="quantity" class="form-control" placeholder="" aria-describedby="helpId1">
                         <small id="helpId1" class="text-muted">Quentity should be number</small>
                     </div>
                     <div class="form-group">
-                        <label for="ReorderLevel">Reorder Level</label>
-                        <input required type="number" name="ReorderLevel" id="ReorderLevel" class="form-control" placeholder="Reorder Level" aria-describedby="helpId1">
+                        <label for="reorder_level">Reorder Level</label>
+                        <input required type="number" name="reorder_level" id="reorder_level" class="form-control" placeholder="Reorder Level" aria-describedby="helpId1">
                         <small id="helpId1" class="text-muted">Reorder Level should be number</small>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input required type="checkbox" class="form-check-input" name="IsFeatured" id="IsFeatured" value="1" checked>
-                            <input type="hidden" class="form-check-input" name="IsFeatured" id="IsFeatured" value="0" >
+                            <input required type="checkbox" class="form-check-input" name="is_featured" id="is_featured" value="1" checked>
+                            <input type="hidden" class="form-check-input" name="is_featured" id="is_featured" value="0" >
                             Featured Item
                         </label>
 
                     </div>
                     <div class="form-group">
-                        <label for="Condition">Condition</label>
-                        <select class="form-control" name="Condition" id="Condition">
+                        <label for="condition">Condition</label>
+                        <select class="form-control" name="condition" id="condition">
                             <option value="New">New</option>
                             <option value="Old">Old</option>
                             <option value="UpComing">UpComing</option>

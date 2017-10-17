@@ -23,8 +23,7 @@
     <!-- Custom Fonts -->
     <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
-    <script src="{{asset('tinymce/tinymce.min.js')}}"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -59,10 +58,9 @@
 <!-- Bootstrap Core JavaScript -->
 <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
-<!-- Morris Charts JavaScript -->
-<script src="{{asset('js/plugins/morris/raphael.min.js')}}"></script>
-<script src="{{asset('js/plugins/morris/morris.min.js')}}"></script>
-<script src="{{asset('js/plugins/morris/morris-data.js')}}"></script>
+<script src="{{asset('tinymce/tinymce.min.js')}}"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
+<script src="{{asset('js/custom.js')}}"></script>
 </body>
 
 </html>

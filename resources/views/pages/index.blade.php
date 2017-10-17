@@ -78,13 +78,8 @@
                             <div class="overlay-content">
                                 <h2>{{$product->product_price}}</h2>
                                 <p>{{$product->product_brief}}</p>
-
-                                <form action="{{url('admin/product')}}" method="post">
-                                    {{csrf_field()}}
-                                    <input type="hidden" name="clickCount" value="0">
-                                    <input type="hidden" name="product_id" value="{{$product->id}}">
-                                    <button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product Details</button>
-                                </form>
+                                <a href="{{url('/product_details/'.$product->id)}}" type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product
+                                    Details</a>
                             </div>
                         </div>
                     </div>
@@ -121,13 +116,8 @@
                                     <div class="overlay-content">
                                         <h2>{{$product->product_price}}</h2>
                                         <p>{{$product->product_brief}}</p>
-
-                                        <form action="{{url('admin/product')}}" method="post">
-                                            {{csrf_field()}}
-                                            <input type="hidden" name="clickCount" value="0">
-                                            <input type="hidden" name="product_id" value="{{$product->id}}">
-                                            <button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product Details</button>
-                                        </form>
+                                        <a href="{{url('/product_details/'.$product->id)}}" type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product
+                                            Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -166,13 +156,8 @@
                                     <img src="{{asset(''.$product->product_file)}}" alt="" />
                                     <h2>${{$product->product_price}}</h2>
                                     <p>{{$product->product_name}}</p>
-                                    <form action="{{url('admin/product')}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="clickCount" value="0">
-                                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                                        <button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product Details</button>
-                                    </form>
-
+                                    <a href="{{url('/product_details/'.$product->id)}}" type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product
+                                        Details</a>
                                 </div>
 
                             </div>
@@ -217,13 +202,8 @@
                                     <img src="{{asset(''.$getProduct->product_file)}}" class="img-responsive" style="width: 268px;height: 160px;" alt="" />
                                     <h2>${{$getProduct->product_price}}</h2>
                                     <p>{{$getProduct->product_name}}</p>
-                                    <form action="{{url('admin/product')}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="hidden" name="clickCount" value="0">
-                                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                                        <button type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product Details</button>
-                                    </form>
-
+                                    <a href="{{url('/product_details/'.$product->id)}}" type="submit" name="submit" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Product
+                                        Details</a>
                                 </div>
 
                             </div>
